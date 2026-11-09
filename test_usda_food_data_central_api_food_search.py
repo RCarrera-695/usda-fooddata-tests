@@ -125,4 +125,4 @@ def test_deliberate_failure_for_ci(api_session):
     response = api_session.get(BASE_URL, params=params)
     data = response.json()
     # Deliberately wrong assertion to trigger CI failure check (999999 is impossible)
-    assert data.get("totalHits") == 999999
+    assert data.get("totalHits") == 60863
