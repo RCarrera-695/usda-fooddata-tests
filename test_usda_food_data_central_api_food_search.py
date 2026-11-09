@@ -5,11 +5,13 @@ Input -> Output Contract: Food search query (string) -> JSON object containing m
 Package Versions: requests==2.32.3, pytest==8.2.2
 """
 
+import os
 import pytest
 import requests
 
 BASE_URL = "https://api.nal.usda.gov/fdc/v1/foods/search"
-API_KEY = "Dd5a8v4LflFanqWP4k5Q17J2A9bliccPMZUFSrZE"
+# Retrieve API key securely from environment variables (populated by GitHub Actions secrets)
+API_KEY = os.getenv("MY_KEY", "fallback_test_key")
 
 
 @pytest.fixture(scope="session")
@@ -117,3 +119,10 @@ def test_food_search_invalid_api_key(api_session, params, expected_statuses):
 def test_food_search_missing_query_parameter(api_session, params, expected_status):
     response = api_session.get(BASE_URL, params=params)
     assert response.status_code == expected_status
+
+def test_deliberate_failure_for_ci(api_session):
+    params = {"api_key": API_KEY, "query": "cheddar cheese", "pageSize": 1}
+    response = api_session.get(BASE_URL, params=params)
+    data = response.json()
+    # Deliberately wrong assertion to trigger CI failure check (999999 is impossible)
+    assert data.get("totalHits") == 60863
