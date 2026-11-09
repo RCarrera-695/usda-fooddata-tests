@@ -119,3 +119,10 @@ def test_food_search_invalid_api_key(api_session, params, expected_statuses):
 def test_food_search_missing_query_parameter(api_session, params, expected_status):
     response = api_session.get(BASE_URL, params=params)
     assert response.status_code == expected_status
+
+def test_deliberate_failure_for_ci(api_session):
+    params = {"api_key": API_KEY, "query": "cheddar cheese", "pageSize": 1}
+    response = api_session.get(BASE_URL, params=params)
+    data = response.json()
+    # Deliberately wrong assertion to trigger CI failure check (999999 is impossible)
+    assert data.get("totalHits") == 999999
