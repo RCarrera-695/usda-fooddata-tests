@@ -17,3 +17,5 @@ data = response.json()
 ## Wire diagram
 The USDA FoodData Central API search protocol acts as the initial data-fetching layer for retrieving nutritional profiles and food descriptions.
 ![Workflow wire diagram](docs/wire_diagram.png)
+
+[![tests](https://github.com/RCarrera-695/final-project/actions/workflows/tests.yml/badge.svg)](https://github.com/RCarrera-695/final-project/actions/workflows/tests.yml)
