@@ -5,11 +5,13 @@ Input -> Output Contract: Food search query (string) -> JSON object containing m
 Package Versions: requests==2.32.3, pytest==8.2.2
 """
 
+import os
 import pytest
 import requests
 
 BASE_URL = "https://api.nal.usda.gov/fdc/v1/foods/search"
-API_KEY = "Dd5a8v4LflFanqWP4k5Q17J2A9bliccPMZUFSrZE"
+# Retrieve API key securely from environment variables (populated by GitHub Actions secrets)
+API_KEY = os.getenv("MY_KEY", "fallback_test_key")
 
 
 @pytest.fixture(scope="session")
