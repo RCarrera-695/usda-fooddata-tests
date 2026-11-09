@@ -19,3 +19,5 @@ The USDA FoodData Central API search protocol acts as the initial data-fetching 
 ![Workflow wire diagram](docs/wire_diagram.png)
 
 [![tests](https://github.com/RCarrera-695/final-project/actions/workflows/tests.yml/badge.svg)](https://github.com/RCarrera-695/final-project/actions/workflows/tests.yml)
+
+[![tests](https://github.com/RCarrera-695/usda-fooddata-tests/actions/workflows/test.yml/badge.svg)](https://github.com/RCarrera-695/usda-fooddata-tests/actions/workflows/test.yml)
